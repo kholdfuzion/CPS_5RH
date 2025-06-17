@@ -1,16 +1,18 @@
+using CPS_5RH.Data;
 using System;
 using System.ComponentModel;
-using System.Drawing;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
-using CPS_5RH.Data;
 
 namespace CPS_5RH;
 
 public class Frm_2Tone : Form
 {
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
 	private IContainer components = null;
 
 	private TabControl Tab_2Tone;
@@ -83,6 +85,10 @@ public class Frm_2Tone : Form
 
 	private TextBox dgvFreq = null;
 
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 	protected override void Dispose(bool disposing)
 	{
 		if (disposing && components != null)
@@ -92,6 +98,10 @@ public class Frm_2Tone : Form
 		base.Dispose(disposing);
 	}
 
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
 	private void InitializeComponent()
 	{
 		System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();

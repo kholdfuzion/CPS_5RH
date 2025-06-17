@@ -92,6 +92,9 @@ public class FormMain : Form
 
 	private string filePath = null;
 
+    /// <summary>
+    /// 必需的设计器变量。
+    /// </summary>
 	private IContainer components = null;
 
 	private System.Windows.Forms.Timer timer1;
@@ -1183,6 +1186,10 @@ public class FormMain : Form
 			catch
 			{
 			}
+            if (frmAprs != null)
+            {
+                frmAprs.CTDCSWidgetLeave();
+            }
 			FileStream fs = new FileStream(filePath, FileMode.Create, FileAccess.Write);
 			try
 			{
@@ -1203,12 +1210,20 @@ public class FormMain : Form
 		}
 		else
 		{
+            if (frmAprs != null)
+            {
+                frmAprs.CTDCSWidgetLeave();
+            }
 			SaveFile();
 		}
 	}
 
 	private void mS_File_SaveAs_Click(object sender, EventArgs e)
 	{
+        if (frmAprs != null)
+        {
+            frmAprs.CTDCSWidgetLeave();
+        }
 		SaveFile();
 	}
 
@@ -1271,6 +1286,10 @@ public class FormMain : Form
 			{
 				fPB.Text = "Write";
 			}
+            if (frmAprs != null)
+            {
+                frmAprs.CTDCSWidgetLeave();
+            }
 			fPB.portName = portName;
 			fPB.ShowDialog();
 		}
@@ -1479,7 +1498,7 @@ public class FormMain : Form
 		ProKeyEnum.Short3Pkey.Clear();
 		ProKeyEnum.Long4Pkey.Clear();
 		ProKeyEnum.Short4Pkey.Clear();
-		for (int i = 0; i < 16; i++)
+        for (int i = 0; i < 17; i++)
 		{
 			if (i == ProKeyEnum.KEY_FUNC_BT)
 			{
@@ -2078,6 +2097,10 @@ public class FormMain : Form
 		}
 	}
 
+    /// <summary>
+    /// 清理所有正在使用的资源。
+    /// </summary>
+    /// <param name="disposing">如果应释放托管资源，为 true；否则为 false。</param>
 	protected override void Dispose(bool disposing)
 	{
 		if (disposing && components != null)
@@ -2087,6 +2110,10 @@ public class FormMain : Form
 		base.Dispose(disposing);
 	}
 
+    /// <summary>
+    /// 设计器支持所需的方法 - 不要修改
+    /// 使用代码编辑器修改此方法的内容。
+    /// </summary>
 	private void InitializeComponent()
 	{
 		this.components = new System.ComponentModel.Container();

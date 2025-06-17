@@ -45,6 +45,9 @@ public class FormProgressBar : Form
 
 	public static int BmpPicLen = 0;
 
+    /// <summary>
+    /// Required designer variable.
+    /// </summary>
 	private IContainer components = null;
 
 	private ProgressBar progressBar;
@@ -113,6 +116,11 @@ public class FormProgressBar : Form
 		}
 	}
 
+    /// <summary>
+    /// 串口配置
+    /// </summary>
+    /// <param name="sP"></param>
+    /// <returns></returns>
 	private bool ConfigComPort(SerialPort sP)
 	{
 		try
@@ -171,6 +179,10 @@ public class FormProgressBar : Form
 		}
 	}
 
+    /// <summary>
+    /// 关闭串口
+    /// </summary>
+    /// <param name="sP"></param>
 	private void CloseComPort(SerialPort sP)
 	{
 		if (sP.IsOpen)
@@ -645,6 +657,10 @@ public class FormProgressBar : Form
 		return data;
 	}
 
+    /// <summary>
+    /// Clean up any resources being used.
+    /// </summary>
+    /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
 	protected override void Dispose(bool disposing)
 	{
 		if (disposing && components != null)
@@ -654,6 +670,10 @@ public class FormProgressBar : Form
 		base.Dispose(disposing);
 	}
 
+    /// <summary>
+    /// Required method for Designer support - do not modify
+    /// the contents of this method with the code editor.
+    /// </summary>
 	private void InitializeComponent()
 	{
 		this.progressBar = new System.Windows.Forms.ProgressBar();

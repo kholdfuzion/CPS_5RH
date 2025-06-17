@@ -59,6 +59,7 @@ internal class DataProtocol
 
 	public static int DpDataLen = 49152;
 
+    /// 0x9E60;
     private void TimerInit()
     {
         timer = new System.Timers.Timer();
@@ -1647,6 +1648,7 @@ internal class DataProtocol
 		bufForData.dataAprsSet.Beacon = (byte)((tmp[92] >> 7) & 1);
 		bufForData.dataAprsSet.HeightType = (byte)((tmp[92] >> 6) & 1);
 		bufForData.dataAprsSet.PttId = (byte)(((byte)((tmp[92] & 0x30) >> 4) <= 3) ? ((byte)((tmp[92] & 0x30) >> 4)) : 0);
+        bufForData.dataAprsSet.EncodeType = (byte)((tmp[92] >> 3) & 1);
 		bufForData.dataAprsSet.MicEType = (byte)(tmp[92] & 7);
 		bufForData.dataAprsSet.TxtLength = tmp[95];
 		bufForData.dataAprsSet.Long = (double)BitConverter.ToInt32(tmp, 96) / 100000.0;
@@ -2869,6 +2871,7 @@ internal class DataProtocol
 		tmp[92] |= (byte)(appData.dataAprsSet.Beacon << 7);
 		tmp[92] |= (byte)(appData.dataAprsSet.HeightType << 6);
 		tmp[92] |= (byte)(appData.dataAprsSet.PttId << 4);
+        tmp[92] |= (byte)(appData.dataAprsSet.EncodeType << 3);
 		tmp[92] |= appData.dataAprsSet.MicEType;
 		tmp[95] = appData.dataAprsSet.TxtLength;
 		int ll = (int)Math.Round(appData.dataAprsSet.Long * 100000.0);
