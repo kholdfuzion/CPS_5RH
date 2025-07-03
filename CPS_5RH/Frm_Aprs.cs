@@ -466,7 +466,16 @@ public class Frm_Aprs : Form
         comboBoxPTTID.Items[1] = strItems[12];
         comboBoxPTTID.Items[2] = strItems[13];
         combobox_table.SelectedIndex = Array.IndexOf(APRS_TABLE, tdata.dataAprsSet.PostionTable);
-        combobox_icon.SelectedIndex = (byte)tdata.dataAprsSet.PostionIcon[0] - 32;
+        //combobox_icon.SelectedIndex = (byte)tdata.dataAprsSet.PostionIcon[0] - 32;
+        int index = (byte)tdata.dataAprsSet.PostionIcon[0] - 32;
+        if (index >= 0 && index < combobox_icon.Items.Count)
+        {
+            combobox_icon.SelectedIndex = index;
+        }
+        else
+        {
+            combobox_icon.SelectedIndex = 0;
+        }
         bangDingSysData();
     }
 
