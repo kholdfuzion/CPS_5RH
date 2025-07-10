@@ -1,6 +1,7 @@
 using CPS_5RH.Data;
 using DevComponents.DotNetBar.Controls;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
 using System.Threading;
@@ -37,6 +38,10 @@ public class Frm_ZoneChn : Form
 
     private Button btn_ClrChn;
 
+    private Button btn_ExportCsv;
+
+    private Button btn_ImportCsv;
+
     private static int zoneIdx = 128;
 
     private static int chBaseAddr = 0;
@@ -72,252 +77,829 @@ public class Frm_ZoneChn : Form
     /// </summary>
     private void InitializeComponent()
     {
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CPS_5RH.Frm_ZoneChn));
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
-        System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
-        this.dGV = new DevComponents.DotNetBar.Controls.DataGridViewX();
-        this.Col_CH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.Col_RxFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.Col_TxFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.Col_RxCTS = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
-        this.Col_TxCTS = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
-        this.Col_Power = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
-        this.Col_Band = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
-        this.Col_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-        this.Col_More = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
-        this.btn_ClrChn = new System.Windows.Forms.Button();
-        ((System.ComponentModel.ISupportInitialize)this.dGV).BeginInit();
-        base.SuspendLayout();
-        this.dGV.AllowUserToAddRows = false;
-        this.dGV.AllowUserToDeleteRows = false;
-        this.dGV.AllowUserToResizeColumns = false;
-        this.dGV.AllowUserToResizeRows = false;
-        this.dGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-        dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-        dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-        dataGridViewCellStyle19.Font = new System.Drawing.Font("宋体", 9f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-        dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-        dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-        dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-        dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-        this.dGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
-        resources.ApplyResources(this.dGV, "dGV");
-        this.dGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-        this.dGV.Columns.AddRange(this.Col_CH, this.Col_RxFreq, this.Col_TxFreq, this.Col_RxCTS, this.Col_TxCTS, this.Col_Power, this.Col_Band, this.Col_Name, this.Col_More);
-        dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-        dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Window;
-        dataGridViewCellStyle22.Font = new System.Drawing.Font("宋体", 9f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-        dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.ControlText;
-        dataGridViewCellStyle22.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-        dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-        dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-        this.dGV.DefaultCellStyle = dataGridViewCellStyle22;
-        this.dGV.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-        this.dGV.GridColor = System.Drawing.Color.FromArgb(208, 215, 229);
-        this.dGV.MultiSelect = false;
-        this.dGV.Name = "dGV";
-        dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-        dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Control;
-        dataGridViewCellStyle23.Font = new System.Drawing.Font("宋体", 9f, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 134);
-        dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-        dataGridViewCellStyle23.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-        dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-        dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-        this.dGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle23;
-        this.dGV.RowHeadersVisible = false;
-        dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-        this.dGV.RowsDefaultCellStyle = dataGridViewCellStyle24;
-        this.dGV.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-        this.dGV.RowTemplate.Height = 27;
-        this.dGV.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(dGV_CellEndEdit);
-        this.dGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(dGV_CellClick);
-        this.dGV.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(dGV_EditingControlShowing);
-        this.Col_CH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        dataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-        dataGridViewCellStyle25.BackColor = System.Drawing.Color.LightGray;
-        dataGridViewCellStyle25.ForeColor = System.Drawing.Color.Black;
-        dataGridViewCellStyle25.SelectionBackColor = System.Drawing.Color.LightGray;
-        dataGridViewCellStyle25.SelectionForeColor = System.Drawing.Color.Black;
-        this.Col_CH.DefaultCellStyle = dataGridViewCellStyle25;
-        this.Col_CH.FillWeight = 70f;
-        resources.ApplyResources(this.Col_CH, "Col_CH");
-        this.Col_CH.Name = "Col_CH";
-        this.Col_CH.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_CH.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_RxFreq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        resources.ApplyResources(this.Col_RxFreq, "Col_RxFreq");
-        this.Col_RxFreq.MaxInputLength = 9;
-        this.Col_RxFreq.Name = "Col_RxFreq";
-        this.Col_RxFreq.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_RxFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_TxFreq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        resources.ApplyResources(this.Col_TxFreq, "Col_TxFreq");
-        this.Col_TxFreq.MaxInputLength = 9;
-        this.Col_TxFreq.Name = "Col_TxFreq";
-        this.Col_TxFreq.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_TxFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_RxCTS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        dataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-        this.Col_RxCTS.DefaultCellStyle = dataGridViewCellStyle26;
-        this.Col_RxCTS.DisplayMember = "Text";
-        this.Col_RxCTS.DropDownHeight = 106;
-        this.Col_RxCTS.DropDownWidth = 121;
-        this.Col_RxCTS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        resources.ApplyResources(this.Col_RxCTS, "Col_RxCTS");
-        this.Col_RxCTS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-        this.Col_RxCTS.IntegralHeight = false;
-        this.Col_RxCTS.ItemHeight = 15;
-        this.Col_RxCTS.Items.AddRange(new object[266]
-        {
-            "OFF", "63.0", "67.0", "69.3", "71.9", "74.4", "77.0", "79.7", "82.5", "85.4",
-            "88.5", "91.5", "94.8", "97.4", "100.0", "103.5", "107.2", "110.9", "114.8", "118.8",
-            "123.0", "127.3", "131.8", "136.5", "141.3", "146.2", "151.4", "156.7", "159.8", "162.2",
-            "165.5", "167.9", "171.3", "173.8", "177.3", "179.9", "183.5", "186.2", "189.9", "192.8",
-            "196.6", "199.5", "203.5", "206.5", "210.7", "218.1", "225.7", "229.1", "233.6", "241.8",
-            "250.3", "254.1", "D017N", "D023N", "D025N", "D026N", "D031N", "D032N", "D036N", "D043N",
-            "D047N", "D050N", "D051N", "D053N", "D054N", "D065N", "D071N", "D072N", "D073N", "D074N",
-            "D114N", "D115N", "D116N", "D122N", "D125N", "D131N", "D132N", "D134N", "D143N", "D145N",
-            "D152N", "D155N", "D156N", "D162N", "D165N", "D172N", "D174N", "D205N", "D212N", "D223N",
-            "D225N", "D226N", "D243N", "D244N", "D245N", "D246N", "D251N", "D252N", "D255N", "D261N",
-            "D263N", "D265N", "D266N", "D271N", "D274N", "D306N", "D311N", "D315N", "D325N", "D331N",
-            "D332N", "D343N", "D346N", "D351N", "D356N", "D364N", "D365N", "D371N", "D411N", "D412N",
-            "D413N", "D423N", "D431N", "D432N", "D445N", "D446N", "D452N", "D454N", "D455N", "D462N",
-            "D464N", "D465N", "D466N", "D503N", "D506N", "D516N", "D523N", "D526N", "D532N", "D546N",
-            "D565N", "D606N", "D612N", "D624N", "D627N", "D631N", "D632N", "D645N", "D654N", "D662N",
-            "D664N", "D703N", "D712N", "D723N", "D731N", "D732N", "D734N", "D743N", "D754N", "D017I",
-            "D023I", "D025I", "D026I", "D031I", "D032I", "D036I", "D043I", "D047I", "D050I", "D051I",
-            "D053I", "D054I", "D065I", "D071I", "D072I", "D073I", "D074I", "D114I", "D115I", "D116I",
-            "D122I", "D125I", "D131I", "D132I", "D134I", "D143I", "D145I", "D152I", "D155I", "D156I",
-            "D162I", "D165I", "D172I", "D174I", "D205I", "D212I", "D223I", "D225I", "D226I", "D243I",
-            "D244I", "D245I", "D246I", "D251I", "D252I", "D255I", "D261I", "D263I", "D265I", "D266I",
-            "D271I", "D274I", "D306I", "D311I", "D315I", "D325I", "D331I", "D332I", "D343I", "D346I",
-            "D351I", "D356I", "D364I", "D365I", "D371I", "D411I", "D412I", "D413I", "D423I", "D431I",
-            "D432I", "D445I", "D446I", "D452I", "D454I", "D455I", "D462I", "D464I", "D465I", "D466I",
-            "D503I", "D506I", "D516I", "D523I", "D526I", "D532I", "D546I", "D565I", "D606I", "D612I",
-            "D624I", "D627I", "D631I", "D632I", "D645I", "D654I", "D662I", "D664I", "D703I", "D712I",
-            "D723I", "D731I", "D732I", "D734I", "D743I", "D754I"
-        });
-        this.Col_RxCTS.MaxInputLength = 5;
-        this.Col_RxCTS.Name = "Col_RxCTS";
-        this.Col_RxCTS.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_RxCTS.RightToLeft = System.Windows.Forms.RightToLeft.No;
-        this.Col_RxCTS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_TxCTS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        this.Col_TxCTS.DisplayMember = "Text";
-        this.Col_TxCTS.DropDownHeight = 106;
-        this.Col_TxCTS.DropDownWidth = 121;
-        this.Col_TxCTS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        resources.ApplyResources(this.Col_TxCTS, "Col_TxCTS");
-        this.Col_TxCTS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-        this.Col_TxCTS.IntegralHeight = false;
-        this.Col_TxCTS.ItemHeight = 15;
-        this.Col_TxCTS.Items.AddRange(new object[266]
-        {
-            "OFF", "63.0", "67.0", "69.3", "71.9", "74.4", "77.0", "79.7", "82.5", "85.4",
-            "88.5", "91.5", "94.8", "97.4", "100.0", "103.5", "107.2", "110.9", "114.8", "118.8",
-            "123.0", "127.3", "131.8", "136.5", "141.3", "146.2", "151.4", "156.7", "159.8", "162.2",
-            "165.5", "167.9", "171.3", "173.8", "177.3", "179.9", "183.5", "186.2", "189.9", "192.8",
-            "196.6", "199.5", "203.5", "206.5", "210.7", "218.1", "225.7", "229.1", "233.6", "241.8",
-            "250.3", "254.1", "D017N", "D023N", "D025N", "D026N", "D031N", "D032N", "D036N", "D043N",
-            "D047N", "D050N", "D051N", "D053N", "D054N", "D065N", "D071N", "D072N", "D073N", "D074N",
-            "D114N", "D115N", "D116N", "D122N", "D125N", "D131N", "D132N", "D134N", "D143N", "D145N",
-            "D152N", "D155N", "D156N", "D162N", "D165N", "D172N", "D174N", "D205N", "D212N", "D223N",
-            "D225N", "D226N", "D243N", "D244N", "D245N", "D246N", "D251N", "D252N", "D255N", "D261N",
-            "D263N", "D265N", "D266N", "D271N", "D274N", "D306N", "D311N", "D315N", "D325N", "D331N",
-            "D332N", "D343N", "D346N", "D351N", "D356N", "D364N", "D365N", "D371N", "D411N", "D412N",
-            "D413N", "D423N", "D431N", "D432N", "D445N", "D446N", "D452N", "D454N", "D455N", "D462N",
-            "D464N", "D465N", "D466N", "D503N", "D506N", "D516N", "D523N", "D526N", "D532N", "D546N",
-            "D565N", "D606N", "D612N", "D624N", "D627N", "D631N", "D632N", "D645N", "D654N", "D662N",
-            "D664N", "D703N", "D712N", "D723N", "D731N", "D732N", "D734N", "D743N", "D754N", "D017I",
-            "D023I", "D025I", "D026I", "D031I", "D032I", "D036I", "D043I", "D047I", "D050I", "D051I",
-            "D053I", "D054I", "D065I", "D071I", "D072I", "D073I", "D074I", "D114I", "D115I", "D116I",
-            "D122I", "D125I", "D131I", "D132I", "D134I", "D143I", "D145I", "D152I", "D155I", "D156I",
-            "D162I", "D165I", "D172I", "D174I", "D205I", "D212I", "D223I", "D225I", "D226I", "D243I",
-            "D244I", "D245I", "D246I", "D251I", "D252I", "D255I", "D261I", "D263I", "D265I", "D266I",
-            "D271I", "D274I", "D306I", "D311I", "D315I", "D325I", "D331I", "D332I", "D343I", "D346I",
-            "D351I", "D356I", "D364I", "D365I", "D371I", "D411I", "D412I", "D413I", "D423I", "D431I",
-            "D432I", "D445I", "D446I", "D452I", "D454I", "D455I", "D462I", "D464I", "D465I", "D466I",
-            "D503I", "D506I", "D516I", "D523I", "D526I", "D532I", "D546I", "D565I", "D606I", "D612I",
-            "D624I", "D627I", "D631I", "D632I", "D645I", "D654I", "D662I", "D664I", "D703I", "D712I",
-            "D723I", "D731I", "D732I", "D734I", "D743I", "D754I"
-        });
-        this.Col_TxCTS.MaxInputLength = 5;
-        this.Col_TxCTS.Name = "Col_TxCTS";
-        this.Col_TxCTS.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_TxCTS.RightToLeft = System.Windows.Forms.RightToLeft.No;
-        this.Col_TxCTS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_Power.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        this.Col_Power.DisplayMember = "Text";
-        this.Col_Power.DropDownHeight = 106;
-        this.Col_Power.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-        this.Col_Power.DropDownWidth = 121;
-        this.Col_Power.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        resources.ApplyResources(this.Col_Power, "Col_Power");
-        this.Col_Power.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-        this.Col_Power.IntegralHeight = false;
-        this.Col_Power.ItemHeight = 20;
-        this.Col_Power.Items.AddRange(new object[3] { "低", "中", "高" });
-        this.Col_Power.Name = "Col_Power";
-        this.Col_Power.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_Power.RightToLeft = System.Windows.Forms.RightToLeft.No;
-        this.Col_Power.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_Band.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        this.Col_Band.DisplayMember = "Text";
-        this.Col_Band.DropDownHeight = 106;
-        this.Col_Band.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-        this.Col_Band.DropDownWidth = 121;
-        this.Col_Band.FillWeight = 65f;
-        this.Col_Band.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        resources.ApplyResources(this.Col_Band, "Col_Band");
-        this.Col_Band.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-        this.Col_Band.IntegralHeight = false;
-        this.Col_Band.ItemHeight = 20;
-        this.Col_Band.Items.AddRange(new object[2] { "12.5K", "25K" });
-        this.Col_Band.Name = "Col_Band";
-        this.Col_Band.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_Band.RightToLeft = System.Windows.Forms.RightToLeft.No;
-        this.Col_Band.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-        resources.ApplyResources(this.Col_Name, "Col_Name");
-        this.Col_Name.MaxInputLength = 16;
-        this.Col_Name.Name = "Col_Name";
-        this.Col_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        this.Col_More.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-        this.Col_More.DropDownHeight = 106;
-        this.Col_More.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-        this.Col_More.DropDownWidth = 121;
-        this.Col_More.FillWeight = 75f;
-        this.Col_More.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-        resources.ApplyResources(this.Col_More, "Col_More");
-        this.Col_More.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-        this.Col_More.IntegralHeight = false;
-        this.Col_More.ItemHeight = 20;
-        this.Col_More.Items.AddRange(new object[8] { "1", "2", "3", "4", "5", "6", "7", "8" });
-        this.Col_More.Name = "Col_More";
-        this.Col_More.ReadOnly = true;
-        this.Col_More.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-        this.Col_More.RightToLeft = System.Windows.Forms.RightToLeft.No;
-        this.Col_More.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-        resources.ApplyResources(this.btn_ClrChn, "btn_ClrChn");
-        this.btn_ClrChn.Name = "btn_ClrChn";
-        this.btn_ClrChn.UseVisualStyleBackColor = true;
-        this.btn_ClrChn.Click += new System.EventHandler(btn_ClrChn_Click);
-        resources.ApplyResources(this, "$this");
-        base.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-        this.BackColor = System.Drawing.SystemColors.Control;
-        base.Controls.Add(this.btn_ClrChn);
-        base.Controls.Add(this.dGV);
-        base.KeyPreview = true;
-        base.Name = "Frm_ZoneChn";
-        base.ShowInTaskbar = false;
-        base.Load += new System.EventHandler(FormZone2_Load);
-        base.Activated += new System.EventHandler(Frm_ZoneChn_Activated);
-        ((System.ComponentModel.ISupportInitialize)this.dGV).EndInit();
-        base.ResumeLayout(false);
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Frm_ZoneChn));
+            this.dGV = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Col_CH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_RxFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_TxFreq = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_RxCTS = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
+            this.Col_TxCTS = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
+            this.Col_Power = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
+            this.Col_Band = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
+            this.Col_Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Col_More = new DevComponents.DotNetBar.Controls.DataGridViewComboBoxExColumn();
+            this.btn_ClrChn = new System.Windows.Forms.Button();
+            this.btn_ExportCsv = new System.Windows.Forms.Button();
+            this.btn_ImportCsv = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dGV)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // dGV
+            // 
+            this.dGV.AllowUserToAddRows = false;
+            this.dGV.AllowUserToDeleteRows = false;
+            this.dGV.AllowUserToResizeColumns = false;
+            this.dGV.AllowUserToResizeRows = false;
+            this.dGV.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dGV.ColumnHeadersHeight = 40;
+            this.dGV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            this.dGV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Col_CH,
+            this.Col_RxFreq,
+            this.Col_TxFreq,
+            this.Col_RxCTS,
+            this.Col_TxCTS,
+            this.Col_Power,
+            this.Col_Band,
+            this.Col_Name,
+            this.Col_More});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dGV.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dGV.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dGV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dGV.Location = new System.Drawing.Point(27, 47);
+            this.dGV.Margin = new System.Windows.Forms.Padding(2);
+            this.dGV.MultiSelect = false;
+            this.dGV.Name = "dGV";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("SimSun", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dGV.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            this.dGV.RowHeadersVisible = false;
+            this.dGV.RowHeadersWidth = 40;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dGV.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            this.dGV.RowTemplate.DefaultCellStyle.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dGV.RowTemplate.Height = 27;
+            this.dGV.Size = new System.Drawing.Size(786, 407);
+            this.dGV.TabIndex = 0;
+            this.dGV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellClick);
+            this.dGV.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dGV_CellEndEdit);
+            this.dGV.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dGV_EditingControlShowing);
+            // 
+            // Col_CH
+            // 
+            this.Col_CH.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.LightGray;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            this.Col_CH.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Col_CH.FillWeight = 70F;
+            this.Col_CH.HeaderText = "信道";
+            this.Col_CH.Name = "Col_CH";
+            this.Col_CH.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_CH.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_CH.Width = 60;
+            // 
+            // Col_RxFreq
+            // 
+            this.Col_RxFreq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Col_RxFreq.HeaderText = "接收频率(MHz)";
+            this.Col_RxFreq.MaxInputLength = 9;
+            this.Col_RxFreq.Name = "Col_RxFreq";
+            this.Col_RxFreq.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_RxFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_RxFreq.Width = 120;
+            // 
+            // Col_TxFreq
+            // 
+            this.Col_TxFreq.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Col_TxFreq.HeaderText = "发射频率(MHz)";
+            this.Col_TxFreq.MaxInputLength = 9;
+            this.Col_TxFreq.Name = "Col_TxFreq";
+            this.Col_TxFreq.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_TxFreq.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_TxFreq.Width = 120;
+            // 
+            // Col_RxCTS
+            // 
+            this.Col_RxCTS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Col_RxCTS.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Col_RxCTS.DisplayMember = "Text";
+            this.Col_RxCTS.DropDownHeight = 106;
+            this.Col_RxCTS.DropDownWidth = 121;
+            this.Col_RxCTS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Col_RxCTS.HeaderText = "接收亚音";
+            this.Col_RxCTS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Col_RxCTS.IntegralHeight = false;
+            this.Col_RxCTS.ItemHeight = 15;
+            this.Col_RxCTS.Items.AddRange(new object[] {
+            "OFF",
+            "63.0",
+            "67.0",
+            "69.3",
+            "71.9",
+            "74.4",
+            "77.0",
+            "79.7",
+            "82.5",
+            "85.4",
+            "88.5",
+            "91.5",
+            "94.8",
+            "97.4",
+            "100.0",
+            "103.5",
+            "107.2",
+            "110.9",
+            "114.8",
+            "118.8",
+            "123.0",
+            "127.3",
+            "131.8",
+            "136.5",
+            "141.3",
+            "146.2",
+            "151.4",
+            "156.7",
+            "159.8",
+            "162.2",
+            "165.5",
+            "167.9",
+            "171.3",
+            "173.8",
+            "177.3",
+            "179.9",
+            "183.5",
+            "186.2",
+            "189.9",
+            "192.8",
+            "196.6",
+            "199.5",
+            "203.5",
+            "206.5",
+            "210.7",
+            "218.1",
+            "225.7",
+            "229.1",
+            "233.6",
+            "241.8",
+            "250.3",
+            "254.1",
+            "D017N",
+            "D023N",
+            "D025N",
+            "D026N",
+            "D031N",
+            "D032N",
+            "D036N",
+            "D043N",
+            "D047N",
+            "D050N",
+            "D051N",
+            "D053N",
+            "D054N",
+            "D065N",
+            "D071N",
+            "D072N",
+            "D073N",
+            "D074N",
+            "D114N",
+            "D115N",
+            "D116N",
+            "D122N",
+            "D125N",
+            "D131N",
+            "D132N",
+            "D134N",
+            "D143N",
+            "D145N",
+            "D152N",
+            "D155N",
+            "D156N",
+            "D162N",
+            "D165N",
+            "D172N",
+            "D174N",
+            "D205N",
+            "D212N",
+            "D223N",
+            "D225N",
+            "D226N",
+            "D243N",
+            "D244N",
+            "D245N",
+            "D246N",
+            "D251N",
+            "D252N",
+            "D255N",
+            "D261N",
+            "D263N",
+            "D265N",
+            "D266N",
+            "D271N",
+            "D274N",
+            "D306N",
+            "D311N",
+            "D315N",
+            "D325N",
+            "D331N",
+            "D332N",
+            "D343N",
+            "D346N",
+            "D351N",
+            "D356N",
+            "D364N",
+            "D365N",
+            "D371N",
+            "D411N",
+            "D412N",
+            "D413N",
+            "D423N",
+            "D431N",
+            "D432N",
+            "D445N",
+            "D446N",
+            "D452N",
+            "D454N",
+            "D455N",
+            "D462N",
+            "D464N",
+            "D465N",
+            "D466N",
+            "D503N",
+            "D506N",
+            "D516N",
+            "D523N",
+            "D526N",
+            "D532N",
+            "D546N",
+            "D565N",
+            "D606N",
+            "D612N",
+            "D624N",
+            "D627N",
+            "D631N",
+            "D632N",
+            "D645N",
+            "D654N",
+            "D662N",
+            "D664N",
+            "D703N",
+            "D712N",
+            "D723N",
+            "D731N",
+            "D732N",
+            "D734N",
+            "D743N",
+            "D754N",
+            "D017I",
+            "D023I",
+            "D025I",
+            "D026I",
+            "D031I",
+            "D032I",
+            "D036I",
+            "D043I",
+            "D047I",
+            "D050I",
+            "D051I",
+            "D053I",
+            "D054I",
+            "D065I",
+            "D071I",
+            "D072I",
+            "D073I",
+            "D074I",
+            "D114I",
+            "D115I",
+            "D116I",
+            "D122I",
+            "D125I",
+            "D131I",
+            "D132I",
+            "D134I",
+            "D143I",
+            "D145I",
+            "D152I",
+            "D155I",
+            "D156I",
+            "D162I",
+            "D165I",
+            "D172I",
+            "D174I",
+            "D205I",
+            "D212I",
+            "D223I",
+            "D225I",
+            "D226I",
+            "D243I",
+            "D244I",
+            "D245I",
+            "D246I",
+            "D251I",
+            "D252I",
+            "D255I",
+            "D261I",
+            "D263I",
+            "D265I",
+            "D266I",
+            "D271I",
+            "D274I",
+            "D306I",
+            "D311I",
+            "D315I",
+            "D325I",
+            "D331I",
+            "D332I",
+            "D343I",
+            "D346I",
+            "D351I",
+            "D356I",
+            "D364I",
+            "D365I",
+            "D371I",
+            "D411I",
+            "D412I",
+            "D413I",
+            "D423I",
+            "D431I",
+            "D432I",
+            "D445I",
+            "D446I",
+            "D452I",
+            "D454I",
+            "D455I",
+            "D462I",
+            "D464I",
+            "D465I",
+            "D466I",
+            "D503I",
+            "D506I",
+            "D516I",
+            "D523I",
+            "D526I",
+            "D532I",
+            "D546I",
+            "D565I",
+            "D606I",
+            "D612I",
+            "D624I",
+            "D627I",
+            "D631I",
+            "D632I",
+            "D645I",
+            "D654I",
+            "D662I",
+            "D664I",
+            "D703I",
+            "D712I",
+            "D723I",
+            "D731I",
+            "D732I",
+            "D734I",
+            "D743I",
+            "D754I"});
+            this.Col_RxCTS.MaxInputLength = 5;
+            this.Col_RxCTS.Name = "Col_RxCTS";
+            this.Col_RxCTS.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_RxCTS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Col_RxCTS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_RxCTS.Width = 80;
+            // 
+            // Col_TxCTS
+            // 
+            this.Col_TxCTS.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Col_TxCTS.DisplayMember = "Text";
+            this.Col_TxCTS.DropDownHeight = 106;
+            this.Col_TxCTS.DropDownWidth = 121;
+            this.Col_TxCTS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Col_TxCTS.HeaderText = "发射亚音";
+            this.Col_TxCTS.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Col_TxCTS.IntegralHeight = false;
+            this.Col_TxCTS.ItemHeight = 15;
+            this.Col_TxCTS.Items.AddRange(new object[] {
+            "OFF",
+            "63.0",
+            "67.0",
+            "69.3",
+            "71.9",
+            "74.4",
+            "77.0",
+            "79.7",
+            "82.5",
+            "85.4",
+            "88.5",
+            "91.5",
+            "94.8",
+            "97.4",
+            "100.0",
+            "103.5",
+            "107.2",
+            "110.9",
+            "114.8",
+            "118.8",
+            "123.0",
+            "127.3",
+            "131.8",
+            "136.5",
+            "141.3",
+            "146.2",
+            "151.4",
+            "156.7",
+            "159.8",
+            "162.2",
+            "165.5",
+            "167.9",
+            "171.3",
+            "173.8",
+            "177.3",
+            "179.9",
+            "183.5",
+            "186.2",
+            "189.9",
+            "192.8",
+            "196.6",
+            "199.5",
+            "203.5",
+            "206.5",
+            "210.7",
+            "218.1",
+            "225.7",
+            "229.1",
+            "233.6",
+            "241.8",
+            "250.3",
+            "254.1",
+            "D017N",
+            "D023N",
+            "D025N",
+            "D026N",
+            "D031N",
+            "D032N",
+            "D036N",
+            "D043N",
+            "D047N",
+            "D050N",
+            "D051N",
+            "D053N",
+            "D054N",
+            "D065N",
+            "D071N",
+            "D072N",
+            "D073N",
+            "D074N",
+            "D114N",
+            "D115N",
+            "D116N",
+            "D122N",
+            "D125N",
+            "D131N",
+            "D132N",
+            "D134N",
+            "D143N",
+            "D145N",
+            "D152N",
+            "D155N",
+            "D156N",
+            "D162N",
+            "D165N",
+            "D172N",
+            "D174N",
+            "D205N",
+            "D212N",
+            "D223N",
+            "D225N",
+            "D226N",
+            "D243N",
+            "D244N",
+            "D245N",
+            "D246N",
+            "D251N",
+            "D252N",
+            "D255N",
+            "D261N",
+            "D263N",
+            "D265N",
+            "D266N",
+            "D271N",
+            "D274N",
+            "D306N",
+            "D311N",
+            "D315N",
+            "D325N",
+            "D331N",
+            "D332N",
+            "D343N",
+            "D346N",
+            "D351N",
+            "D356N",
+            "D364N",
+            "D365N",
+            "D371N",
+            "D411N",
+            "D412N",
+            "D413N",
+            "D423N",
+            "D431N",
+            "D432N",
+            "D445N",
+            "D446N",
+            "D452N",
+            "D454N",
+            "D455N",
+            "D462N",
+            "D464N",
+            "D465N",
+            "D466N",
+            "D503N",
+            "D506N",
+            "D516N",
+            "D523N",
+            "D526N",
+            "D532N",
+            "D546N",
+            "D565N",
+            "D606N",
+            "D612N",
+            "D624N",
+            "D627N",
+            "D631N",
+            "D632N",
+            "D645N",
+            "D654N",
+            "D662N",
+            "D664N",
+            "D703N",
+            "D712N",
+            "D723N",
+            "D731N",
+            "D732N",
+            "D734N",
+            "D743N",
+            "D754N",
+            "D017I",
+            "D023I",
+            "D025I",
+            "D026I",
+            "D031I",
+            "D032I",
+            "D036I",
+            "D043I",
+            "D047I",
+            "D050I",
+            "D051I",
+            "D053I",
+            "D054I",
+            "D065I",
+            "D071I",
+            "D072I",
+            "D073I",
+            "D074I",
+            "D114I",
+            "D115I",
+            "D116I",
+            "D122I",
+            "D125I",
+            "D131I",
+            "D132I",
+            "D134I",
+            "D143I",
+            "D145I",
+            "D152I",
+            "D155I",
+            "D156I",
+            "D162I",
+            "D165I",
+            "D172I",
+            "D174I",
+            "D205I",
+            "D212I",
+            "D223I",
+            "D225I",
+            "D226I",
+            "D243I",
+            "D244I",
+            "D245I",
+            "D246I",
+            "D251I",
+            "D252I",
+            "D255I",
+            "D261I",
+            "D263I",
+            "D265I",
+            "D266I",
+            "D271I",
+            "D274I",
+            "D306I",
+            "D311I",
+            "D315I",
+            "D325I",
+            "D331I",
+            "D332I",
+            "D343I",
+            "D346I",
+            "D351I",
+            "D356I",
+            "D364I",
+            "D365I",
+            "D371I",
+            "D411I",
+            "D412I",
+            "D413I",
+            "D423I",
+            "D431I",
+            "D432I",
+            "D445I",
+            "D446I",
+            "D452I",
+            "D454I",
+            "D455I",
+            "D462I",
+            "D464I",
+            "D465I",
+            "D466I",
+            "D503I",
+            "D506I",
+            "D516I",
+            "D523I",
+            "D526I",
+            "D532I",
+            "D546I",
+            "D565I",
+            "D606I",
+            "D612I",
+            "D624I",
+            "D627I",
+            "D631I",
+            "D632I",
+            "D645I",
+            "D654I",
+            "D662I",
+            "D664I",
+            "D703I",
+            "D712I",
+            "D723I",
+            "D731I",
+            "D732I",
+            "D734I",
+            "D743I",
+            "D754I"});
+            this.Col_TxCTS.MaxInputLength = 5;
+            this.Col_TxCTS.Name = "Col_TxCTS";
+            this.Col_TxCTS.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_TxCTS.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Col_TxCTS.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_TxCTS.Width = 80;
+            // 
+            // Col_Power
+            // 
+            this.Col_Power.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Col_Power.DisplayMember = "Text";
+            this.Col_Power.DropDownHeight = 106;
+            this.Col_Power.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Col_Power.DropDownWidth = 121;
+            this.Col_Power.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Col_Power.HeaderText = "功率";
+            this.Col_Power.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Col_Power.IntegralHeight = false;
+            this.Col_Power.ItemHeight = 20;
+            this.Col_Power.Items.AddRange(new object[] {
+            "低",
+            "中",
+            "高"});
+            this.Col_Power.Name = "Col_Power";
+            this.Col_Power.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_Power.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Col_Power.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_Power.Width = 70;
+            // 
+            // Col_Band
+            // 
+            this.Col_Band.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Col_Band.DisplayMember = "Text";
+            this.Col_Band.DropDownHeight = 106;
+            this.Col_Band.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Col_Band.DropDownWidth = 121;
+            this.Col_Band.FillWeight = 65F;
+            this.Col_Band.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Col_Band.HeaderText = "宽窄";
+            this.Col_Band.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Col_Band.IntegralHeight = false;
+            this.Col_Band.ItemHeight = 20;
+            this.Col_Band.Items.AddRange(new object[] {
+            "12.5K",
+            "25K"});
+            this.Col_Band.Name = "Col_Band";
+            this.Col_Band.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_Band.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Col_Band.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_Band.Width = 60;
+            // 
+            // Col_Name
+            // 
+            this.Col_Name.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.Col_Name.HeaderText = "信道名称";
+            this.Col_Name.MaxInputLength = 16;
+            this.Col_Name.Name = "Col_Name";
+            this.Col_Name.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Col_Name.Width = 110;
+            // 
+            // Col_More
+            // 
+            this.Col_More.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Col_More.DropDownHeight = 106;
+            this.Col_More.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Col_More.DropDownWidth = 121;
+            this.Col_More.FillWeight = 75F;
+            this.Col_More.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Col_More.HeaderText = "更多参数";
+            this.Col_More.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.Col_More.IntegralHeight = false;
+            this.Col_More.ItemHeight = 20;
+            this.Col_More.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.Col_More.Name = "Col_More";
+            this.Col_More.ReadOnly = true;
+            this.Col_More.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Col_More.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.Col_More.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // btn_ClrChn
+            // 
+            this.btn_ClrChn.Location = new System.Drawing.Point(697, 5);
+            this.btn_ClrChn.Name = "btn_ClrChn";
+            this.btn_ClrChn.Size = new System.Drawing.Size(116, 36);
+            this.btn_ClrChn.TabIndex = 1;
+            this.btn_ClrChn.Text = "清除信道";
+            this.btn_ClrChn.UseVisualStyleBackColor = true;
+            this.btn_ClrChn.Click += new System.EventHandler(this.btn_ClrChn_Click);
+            // 
+            // btn_ExportCsv
+            // 
+            this.btn_ExportCsv.Location = new System.Drawing.Point(138, 5);
+            this.btn_ExportCsv.Name = "btn_ExportCsv";
+            this.btn_ExportCsv.Size = new System.Drawing.Size(93, 36);
+            this.btn_ExportCsv.TabIndex = 2;
+            this.btn_ExportCsv.Text = "Export CSV";
+            this.btn_ExportCsv.UseVisualStyleBackColor = true;
+            this.btn_ExportCsv.Click += new System.EventHandler(this.btn_ExportCsv_Click);
+            // 
+            // btn_ImportCsv
+            // 
+            this.btn_ImportCsv.Location = new System.Drawing.Point(27, 5);
+            this.btn_ImportCsv.Name = "btn_ImportCsv";
+            this.btn_ImportCsv.Size = new System.Drawing.Size(94, 36);
+            this.btn_ImportCsv.TabIndex = 3;
+            this.btn_ImportCsv.Text = "Import CSV";
+            this.btn_ImportCsv.UseVisualStyleBackColor = true;
+            this.btn_ImportCsv.Click += new System.EventHandler(this.btn_ImportCsv_Click);
+            // 
+            // Frm_ZoneChn
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(847, 494);
+            this.Controls.Add(this.btn_ImportCsv);
+            this.Controls.Add(this.btn_ExportCsv);
+            this.Controls.Add(this.btn_ClrChn);
+            this.Controls.Add(this.dGV);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "Frm_ZoneChn";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Activated += new System.EventHandler(this.Frm_ZoneChn_Activated);
+            this.Load += new System.EventHandler(this.FormZone2_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dGV)).EndInit();
+            this.ResumeLayout(false);
+
     }
 
     public Frm_ZoneChn(DataApp data)
@@ -999,5 +1581,217 @@ public class Frm_ZoneChn : Form
                 DatChannelInfo.ChnTotal--;
             }
         }
+    }
+
+    private void btn_ExportCsv_Click(object sender, EventArgs e)
+    {
+        using (SaveFileDialog sfd = new SaveFileDialog())
+        {
+            sfd.Filter = "CSV files (*.csv)|*.csv";
+            sfd.Title = "Export Zone Channels to CSV";
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                using (var sw = new System.IO.StreamWriter(sfd.FileName, false, System.Text.Encoding.UTF8))
+                {
+                    // Name is exported as the first column
+                    sw.WriteLine("ChnName,RxFreq,TxFreq,RxCTS,TxCTS,Power,Band,UseFlg,Offsetdir,DivFreq,SignalType,SqType");
+                    for (int i = 0; i < DataApp.Zone_Max_Chn_Num; i++)
+                    {
+                        int chIdx = chBaseAddr + i;
+                        if (chIdx >= tdata.dataChnInfor.Length) break;
+                        var chn = tdata.dataChnInfor[chIdx];
+                        // Only export used channels
+                        if (chn.UseFlg != 1) continue;
+                        string[] fields = new string[]
+                        {
+                            chn.ChnName ?? "",
+                            chn.RxFreq ?? "",
+                            chn.TxFreq ?? "",
+                            chn.RxCtsDcs ?? "",
+                            chn.TxCtsDcs ?? "",
+                            chn.Power.ToString(),
+                            chn.Wideth.ToString(),
+                            chn.UseFlg.ToString(),
+                            chn.Offsetdir.ToString(),
+                            chn.DivFreq ?? "",
+                            chn.SignalType.ToString(),
+                            chn.SqType.ToString()
+                        };
+                        for (int f = 0; f < fields.Length; f++)
+                        {
+                            if (fields[f].IndexOf(',') != -1 || fields[f].IndexOf('\"') != -1)
+                                fields[f] = "\"" + fields[f].Replace("\"", "\"\"") + "\"";
+                        }
+                        sw.WriteLine(string.Join(",", fields));
+                    }
+                }
+                MessageBox.Show("Export completed.", "Export", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+    }
+
+    private void btn_ImportCsv_Click(object sender, EventArgs e)
+    {
+        using (OpenFileDialog ofd = new OpenFileDialog())
+        {
+            ofd.Filter = "CSV files (*.csv)|*.csv";
+            ofd.Title = "Import Zone Channels from CSV";
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                var lines = System.IO.File.ReadAllLines(ofd.FileName, System.Text.Encoding.UTF8);
+                if (lines.Length < 2)
+                {
+                    MessageBox.Show("No data found in CSV.", "Import", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Clear all channels for this zone
+                for (int i = 0; i < DataApp.Zone_Max_Chn_Num; i++)
+                {
+                    int chIdx = chBaseAddr + i;
+                    if (chIdx < tdata.dataChnInfor.Length)
+                    {
+                        tdata.dataChnInfor[chIdx] = new DatChannelInfo();
+                        tdata.dataZoneInfor[zoneIdx].SetChnID(i, 65535);
+                    }
+                }
+                tdata.dataZoneInfor[zoneIdx].ChnNum = 0;
+
+                // Import channels from CSV (Name is first column)
+                for (int i = 1; i < lines.Length && tdata.dataZoneInfor[zoneIdx].ChnNum < DataApp.Zone_Max_Chn_Num; i++)
+                {
+                    string line = lines[i].Trim();
+                    if (line == "") continue;
+                    string[] fields = ParseCsvLine(line);
+                    if (fields.Length < 12) continue; // 12 fields expected
+
+                    int row = tdata.dataZoneInfor[zoneIdx].ChnNum;
+                    int chIdx = chBaseAddr + row;
+                    if (chIdx >= tdata.dataChnInfor.Length) break;
+
+                    var chn = tdata.dataChnInfor[chIdx];
+                    chn.ChnName = fields[0];
+
+                    // Pad RxFreq and TxFreq to 5 decimal places if needed
+                    chn.RxFreq = PadFreqToFiveDecimals(fields[1]);
+                    chn.TxFreq = PadFreqToFiveDecimals(fields[2]);
+
+                    // Ensure CTC/DCS fields have at least 1 decimal if not DxxxN/I
+                    chn.RxCtsDcs = FormatCtcDcs(fields[3]);
+                    chn.TxCtsDcs = FormatCtcDcs(fields[4]);
+
+                    byte power;
+                    if (byte.TryParse(fields[5], out power))
+                    {
+                        chn.Power = power;
+                    }
+                    byte wideth;
+                    if (byte.TryParse(fields[6], out wideth))
+                    {
+                        chn.Wideth = wideth;
+                    }
+                    byte useFlg;
+                    if (byte.TryParse(fields[7], out useFlg))
+                    {
+                        chn.UseFlg = useFlg;
+                    }
+                    byte offsetdir;
+                    if (byte.TryParse(fields[8], out offsetdir))
+                    {
+                        chn.Offsetdir = offsetdir;
+                    }
+                    chn.DivFreq = fields[9];
+                    byte signalType;
+                    if (byte.TryParse(fields[10], out signalType))
+                    {
+                        chn.SignalType = signalType;
+                    }
+                    byte sqType;
+                    if (byte.TryParse(fields[11], out sqType))
+                    {
+                        chn.SqType = sqType;
+                    }
+
+                    // If this channel is marked as used, update the zone's channel count and mapping
+                    if (chn.UseFlg == 1)
+                    {
+                        tdata.dataZoneInfor[zoneIdx].SetChnID(row, chIdx);
+                        tdata.dataZoneInfor[zoneIdx].ChnNum++;
+                    }
+                }
+
+                ZoneChnDataDisp(zoneIdx);
+                MessageBox.Show("Import completed.", "Import", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+    }
+
+    // Helper to pad frequency string to 5 decimal places
+    private string PadFreqToFiveDecimals(string freq)
+    {
+        if (string.IsNullOrEmpty(freq)) return freq;
+        int dotIdx = freq.IndexOf('.');
+        if (dotIdx == -1)
+        {
+            return freq + ".00000";
+        }
+        int decimals = freq.Length - dotIdx - 1;
+        if (decimals < 5)
+        {
+            return freq + new string('0', 5 - decimals);
+        }
+        return freq;
+    }
+
+    // Simple CSV parser for quoted fields
+    private string[] ParseCsvLine(string line)
+    {
+        var result = new List<string>();
+        bool inQuotes = false;
+        string field = "";
+        for (int i = 0; i < line.Length; i++)
+        {
+            char c = line[i];
+            if (c == '\"')
+            {
+                if (inQuotes && i + 1 < line.Length && line[i + 1] == '\"')
+                {
+                    field += '\"';
+                    i++;
+                }
+                else
+                {
+                    inQuotes = !inQuotes;
+                }
+            }
+            else if (c == ',' && !inQuotes)
+            {
+                result.Add(field);
+                field = "";
+            }
+            else
+            {
+                field += c;
+            }
+        }
+        result.Add(field);
+        return result.ToArray();
+    }
+
+    // Helper to ensure CTC/DCS is at least 1 decimal for non-D values
+    private string FormatCtcDcs(string val)
+    {
+        if (string.IsNullOrEmpty(val)) return val;
+        string upper = val.ToUpper();
+        if (upper.StartsWith("D") && upper.Length == 5)
+            return val;
+        if (upper == "OFF")
+            return val;
+        int dotIdx = val.IndexOf('.');
+        if (dotIdx == -1)
+            return val + ".0";
+        if (val.Length - dotIdx - 1 < 1)
+            return val + "0";
+        return val;
     }
 }
